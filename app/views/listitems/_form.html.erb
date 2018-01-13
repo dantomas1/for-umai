@@ -11,8 +11,10 @@
   <% end %>
      
      <%= f.text_field :title, :placeholder => "Title" %>
-     <%= f.text_field :list_id, :placeholder => "List ID" %>
-     <%= f.text_field :tag_id, :placeholder => "Tag IDs" %>
+      <%= collection_select(:listitem, :list_id, List.all, :id, :title, prompt: true) %>
+     <%#= f.text_field :list_id, :placeholder => "List ID" %>
+     <%#= f.text_field :tag_id, :placeholder => "Tag IDs" %>
+    <%= collection_select(:listitem, :tag_id, Tag.all, :id, :items, prompt: true) %>
      <%= f.text_area :description, :placeholder => "Description" %>
      <%= f.submit "Create List Item" %>
 <% end %>
