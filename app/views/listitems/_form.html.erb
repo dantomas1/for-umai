@@ -1,0 +1,18 @@
+<%= form_for @listitem do |f| %>
+  <% if @listitem.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@listitem.errors.count, "error") %> prohibited this owner from being saved:</h2>
+
+      <ul>
+      <% @listitem.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+  <% end %>
+     
+     <%= f.text_field :title, :placeholder => "Title" %>
+     <%= f.text_field :list_id, :placeholder => "List ID" %>
+     <%= f.text_field :tag_id, :placeholder => "Tag IDs" %>
+     <%= f.text_area :description, :placeholder => "Description" %>
+     <%= f.submit "Create List Item" %>
+<% end %>

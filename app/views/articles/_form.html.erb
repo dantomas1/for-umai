@@ -1,0 +1,18 @@
+<%= form_for @article do |f| %>
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+      <ul>
+      <% @article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+  <% end %>
+     <%= collection_select(:article, :owner_name, Owner.all, :id, :owner_name, prompt: true) %>
+     
+     <%= f.text_field :name, :placeholder => "Name" %>
+     <%= f.text_field :price, :placeholder => "Price" %>
+     <%= f.text_area :description, :placeholder => "Description" %>
+     <%= f.submit "Create" %>
+<% end %>

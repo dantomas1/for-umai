@@ -1,0 +1,41 @@
+<h2>Thrash List</h4>
+<table>
+  <% @lists.each do |list| %> 
+ <% if list.state == "thrashed" %>
+ <thead>
+ <th><%= list.id %></th>
+  <th><%= list.title %></th>
+  <th>
+  <%= button_to "Restore List", thrash_list_path(list), :method => "put", data: { confirm: "You sure?" } %>    
+  </th>
+  </thead>
+  <tbody>
+    <% list.listitems.each do |listitem| %>
+     <td><%= listitem.title %> <br/>Tags: <%= listitem.tag.items %> </td>
+     <td><%= listitem.state %></td>
+     
+    <% end %>
+  </tbody>
+  <% end %>
+  <% end %>
+</table>
+<hr />
+<br/>
+<h2>Thrash Listitems</h4>
+<table>
+  <% @lists.each do |list| %> 
+ 
+  <tbody>
+    <% list.listitems.each do |listitem| %>
+    <% if listitem.state == "thrashed" %>
+     <td><%= listitem.title %> <br/>Tags: <%= listitem.tag.items %> </td>
+     <td><%= listitem.state %></td>
+     <td>
+     <%= button_to "Restore Item", thrash_listitem_path(listitem), :method => "put", data: { confirm: "You sure?" } %>
+     </td>
+     <% end %>
+    <% end %>
+  </tbody>
+  
+  <% end %>
+</table>

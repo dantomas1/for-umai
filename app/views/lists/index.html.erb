@@ -1,0 +1,32 @@
+<table>
+  <% @lists.each do |list| %>
+  <% if list.state == "active" %>
+ <thead>
+ <th><%= list.id %></th>
+  <th><%= list.title %></th>
+  <th>
+     <%= button_to "Delete List", thrash_list_path(list), :method => "put", data: { confirm: "You sure?" } %>
+     
+  </th>
+  <th>
+     <%= button_to "Destroy List", list_path(list), :method => "delete", data: { confirm: "Are you sure?" } %>
+     
+  </th>
+  </thead>
+  <tbody>
+    <% list.listitems.each do |listitem| %>
+    <% if listitem.state == "active" %>
+     <td><%= listitem.title %> <br/>Tags: <%= listitem.tag.items %> </td>
+     <td><%= listitem.state %></td>
+     <td>
+     <%= button_to "Delete Item", thrash_listitem_path(listitem), :method => "put", data: { confirm: "You sure?" } %>
+     </td>
+     <td>
+     <%= button_to "Destroy Item", listitem_path(listitem), :method => "delete", data: { confirm: "Are you sure?" } %>
+     </td>
+      <% end %>
+    <% end %>
+  </tbody>
+  <% end %>
+  <% end %>
+</table>
