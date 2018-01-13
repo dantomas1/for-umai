@@ -1,7 +1,7 @@
 class CreateTags < ActiveRecord::Migration
   def up
     create_table :tags do |t|
-      t.string :items, array: true, default: []
+      t.text :items
       
       t.timestamps null: false
     end
